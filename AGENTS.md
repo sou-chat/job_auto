@@ -217,6 +217,30 @@ Default modes are in `modes/` (English). Additional language-specific modes are 
 - `article-digest.md` has detailed proof points (optional)
 - **NEVER hardcode metrics** -- read them from these files at evaluation time
 
+### CV Tailoring Rules (per JD)
+
+When generating a tailored CV for a specific application, the **only** permitted changes to `cv-template.html` are:
+
+1. **Professional Summary** — rewrite the paragraph to match the JD's language, role title, and key requirements
+2. **Experience bullet points** — lightly edit wording and shift `<strong>` bold tags to emphasize what's most relevant; do NOT replace bullets with fictional achievements
+3. **Skills** — reorder existing skill items AND alter individual keywords to match JD terminology (e.g. swap "Confluence" for "Notion" if the JD uses that term). Keep the same categories and roughly the same count per category.
+
+**Hard rules:**
+- **No formatting changes** (CSS, layout, spacing, fonts) when tailoring per JD
+- **Static sections are untouched**: Education, Projects, Header (name/contact/links)
+- **Never fabricate metrics** — all numbers must come from `cv.md` or existing bullets
+
+### CV Layout Rules (NON-NEGOTIABLE — enforce on every generation)
+
+These must be verified after every CV generation before showing the user:
+
+1. **1 page only** — PDF must always be exactly 1 page. If it overflows, reduce font-size or line-height in `cv-template.html` before generating. Never deliver a 2-page CV.
+2. **Section spacing** — `.section { margin-bottom: 8px }` must always be present. There must be visible space between Education, Summary, Experience, Projects, Skills.
+3. **Company entry spacing** — `.job { margin-bottom: 8px }` must always be present. There must be visible space between different company entries within Experience.
+4. **PDF margins** — always `0.45in` all sides in `generate-pdf.mjs`. Do not increase margins to fix overflow — fix the content/font instead.
+
+After generating, always confirm: `📊 Pages: 1` in the output. If it says 2, fix before delivering.
+
 ---
 
 ## Ethical Use -- CRITICAL

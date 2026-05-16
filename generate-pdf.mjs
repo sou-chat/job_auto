@@ -147,14 +147,15 @@ async function generatePDF() {
     await page.evaluate(() => document.fonts.ready);
 
     // Generate PDF
+    // Margins matched to reference CV_S.Chatt_Product.pdf (single-page design)
     const pdfBuffer = await page.pdf({
       format: format,
       printBackground: true,
       margin: {
-        top: '0.6in',
-        right: '0.6in',
-        bottom: '0.6in',
-        left: '0.6in',
+        top: '0.45in',
+        right: '0.45in',
+        bottom: '0.45in',
+        left: '0.45in',
       },
       preferCSSPageSize: false,
     });
