@@ -10,15 +10,19 @@
                                │
             ┌──────────────────┼──────────────────────┐
             │                  │                       │
-     ┌──────▼──────┐   ┌──────▼──────┐   ┌───────────▼────────┐
-     │ Single Eval  │   │ Portal Scan │   │   Batch Process    │
-     │ (auto-pipe)  │   │  (scan.md)  │   │   (batch-runner)   │
-     └──────┬──────┘   └──────┬──────┘   └───────────┬────────┘
-            │                  │                       │
-            │           ┌──────▼──────┐          ┌────▼─────┐
-            │           │ pipeline.md │          │ N workers│
-            │           │ (URL inbox) │          │ (headless)
-            │           └─────────────┘          └────┬─────┘
+     ┌──────▼──────┐   ┌──────▼───────────────────────┐   ┌───────────▼────────┐
+     │ Single Eval  │   │        Portal Scan            │   │   Batch Process    │
+     │ (auto-pipe)  │   │  scan.mjs  (Greenhouse/Ashby) │   │   (batch-runner)   │
+     └──────┬──────┘   │  scan-apify.mjs (LinkedIn/    │   └───────────┬────────┘
+            │           │    Indeed via Apify REST API)  │              │
+            │           │  scan-naukri.mjs (Naukri via  │         ┌────▼─────┐
+            │           │    Playwright authed session)  │         │ N workers│
+            │           └──────────────┬────────────────┘         │ (headless)
+            │                          │                           └────┬─────┘
+            │                   ┌──────▼──────┐                        │
+            │                   │ pipeline.md │                        │
+            │                   │ (URL inbox) │                        │
+            │                   └─────────────┘                        │
             │                                          │
      ┌──────▼──────────────────────────────────────────▼──────┐
      │                    Output Pipeline                      │

@@ -73,6 +73,8 @@ Built by someone who used it to evaluate 740+ job offers, generate 100+ tailored
 | **Negotiation Scripts** | Salary negotiation frameworks, geographic discount pushback, competing offer leverage |
 | **ATS PDF Generation** | Keyword-injected CVs with Space Grotesk + DM Sans design |
 | **Portal Scanner** | 45+ companies pre-configured (Anthropic, OpenAI, ElevenLabs, Retool, n8n...) + custom queries across Ashby, Greenhouse, Lever, Wellfound |
+| **Apify Scanner** | LinkedIn + Indeed India via Apify REST API — no extra npm deps. Configure search URLs in `portals.yml`. Requires free `APIFY_TOKEN`. |
+| **Naukri Scanner** | Playwright headless login scraper for Naukri. Intercepts Naukri's internal API responses for clean JSON. Session persisted so OTP is only needed once. Requires `NAUKRI_EMAIL` + `NAUKRI_PASSWORD`. |
 | **Batch Processing** | Parallel evaluation with `claude -p` workers |
 | **Dashboard TUI** | Terminal UI to browse, filter, and sort your pipeline |
 | **Human-in-the-Loop** | AI evaluates and recommends, you decide and act. The system never submits an application -- you always have the final call |
@@ -217,6 +219,15 @@ The scanner comes with **45+ companies** ready to scan and **19 search queries**
 
 **Job boards searched:** Ashby, Greenhouse, Lever, Wellfound, Workable, RemoteFront
 
+### Additional Sources (via dedicated scanners)
+
+| Scanner | Command | Sources | Requires |
+|---------|---------|---------|---------|
+| `scan:apify` | `npm run scan:apify` | LinkedIn, Indeed India | `APIFY_TOKEN` in `.env` (free tier) |
+| `scan:naukri` | `npm run scan:naukri` | Naukri.com | `NAUKRI_EMAIL` + `NAUKRI_PASSWORD` in `.env` |
+
+All scanners apply the same `title_filter` and `location_filter` from `portals.yml` and write new results to `data/pipeline.md`.
+
 ## Dashboard TUI
 
 The built-in terminal dashboard lets you browse your pipeline visually:
@@ -246,6 +257,10 @@ career-ops/
 │   ├── scan.md                  # Portal scanner
 │   ├── batch.md                 # Batch processing
 │   └── ...
+├── scan.mjs                     # Zero-token scanner: Greenhouse/Ashby/Lever + WebSearch
+├── scan-apify.mjs               # Apify scanner: LinkedIn + Indeed India
+├── scan-naukri.mjs              # Playwright scanner: Naukri (authenticated session)
+├── providers/                   # Scanner provider modules
 ├── templates/
 │   ├── cv-template.html         # ATS-optimized CV template
 │   ├── portals.example.yml      # Scanner config template
@@ -272,7 +287,7 @@ career-ops/
 
 - **Agent**: Claude Code with custom skills and modes
 - **PDF**: Playwright/Puppeteer + HTML template
-- **Scanner**: Playwright + Greenhouse API + WebSearch
+- **Scanner**: Playwright + Greenhouse/Ashby/Lever APIs + Apify REST + Naukri authenticated session
 - **Dashboard**: Go + Bubble Tea + Lipgloss (Catppuccin Mocha theme)
 - **Data**: Markdown tables + YAML config + TSV batch files
 

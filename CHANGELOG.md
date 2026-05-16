@@ -1,5 +1,17 @@
 # Changelog
 
+## [Unreleased]
+
+### Features
+
+* **scan:apify** — LinkedIn + Indeed India scraper via Apify REST API. No extra npm deps (uses Node built-in `https`). Normalizes actor-specific field names, deduplicates, writes to `data/pipeline.md`. Requires `APIFY_TOKEN` in `.env`. Configure search URLs/limits under `apify_sources` in `portals.yml`.
+* **scan:naukri** — Playwright headless login scraper for Naukri.com. Uses real Chrome executable to bypass Akamai bot protection. Intercepts Naukri's internal `/jobapi/` responses for clean structured JSON (no HTML parsing). Session cookies persisted to `data/naukri-session.json` — OTP only required on first run or after expiry. Requires `NAUKRI_EMAIL` + `NAUKRI_PASSWORD` in `.env`.
+* Both scanners respect `title_filter` and `location_filter` from `portals.yml` and share the same dedup logic as `scan.mjs`.
+
+### Bug Fixes
+
+* **scan:naukri** — correct location field mapping: Naukri `placeholders` entries use `type: "location"` with city in `.label` (not `.title`)
+
 ## [1.8.0](https://github.com/santifer/career-ops/compare/career-ops-v1.7.1...career-ops-v1.8.0) (2026-05-15)
 
 
