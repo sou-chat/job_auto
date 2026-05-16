@@ -311,6 +311,52 @@ search_queries:
     query: 'site:news.ycombinator.com OR site:hnrss.org "AI Engineer" OR "Forward Deployed" OR "DevRel" OR "Founding Engineer" remote'
     enabled: true
 
+# ── Apify sources ─────────────────────────────────────────────────────────────
+# Run: node scan-apify.mjs   (requires APIFY_TOKEN in .env)
+#
+# Each entry starts an Apify actor run, waits for it to finish, and fetches
+# the result dataset. title_filter + location_filter from this file are applied.
+# `limit` caps how many dataset items are fetched (default 200).
+#
+# Actor IDs are from https://apify.com/store. If an actor is paused/renamed,
+# update the `actor:` field. `input` is passed verbatim as the actor's JSON input.
+
+apify_sources:
+
+  # ── LinkedIn ─────────────────────────────────────────────────────────────────
+  # Actor: https://apify.com/curious_coder/linkedin-jobs-scraper
+  # Required: urls (array of LinkedIn search page URLs), count (max jobs)
+  # Tip: copy the search URL from your browser (use incognito to get a clean URL)
+  - name: LinkedIn
+    actor: curious_coder/linkedin-jobs-scraper
+    enabled: true
+    limit: 100
+    input:
+      urls:
+        - "https://www.linkedin.com/jobs/search/?keywords=YOUR+ROLE&location=YOUR+LOCATION&f_TPR=r2592000&f_JT=F"
+      count: 100
+
+  # ── Indeed ────────────────────────────────────────────────────────────────────
+  # Actor: https://apify.com/misceres/indeed-scraper
+  # country codes: US, IN, GB, DE, FR, CA, AU — see actor docs for full list
+  - name: Indeed
+    actor: misceres/indeed-scraper
+    enabled: true
+    limit: 200
+    input:
+      country: "US"           # [CUSTOMIZE] change to your country code
+      position: "YOUR ROLE"   # [CUSTOMIZE] e.g. "Product Manager"
+      location: "Remote"      # [CUSTOMIZE] city, state, or "Remote"
+      maxItems: 200
+      parseCompanyDetails: false
+
+  # ── Naukri (India) ────────────────────────────────────────────────────────────
+  # Naukri blocks all Apify actors — use scan-naukri.mjs instead.
+  # See: node scan-naukri.mjs --help
+  # Requires: NAUKRI_EMAIL + NAUKRI_PASSWORD in .env
+  # - name: Naukri
+  #   enabled: false   # kept as reference — not usable via Apify
+
 # -- Tracked companies --
 # Companies whose career pages are checked directly.
 # scan_method: playwright (default), websearch, greenhouse_api
