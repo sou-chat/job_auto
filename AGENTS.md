@@ -236,7 +236,7 @@ When generating a tailored CV for a specific application, the **only** permitted
 
 These must be verified after every CV generation before showing the user:
 
-1. **1 page only** — PDF must always be exactly 1 page. If it overflows, reduce font-size or line-height in `cv-template.html` before generating. Never deliver a 2-page CV.
+1. **1 page only** — PDF must always be exactly 1 page. Never deliver a 2-page CV. If content overflows, reduce `margin-bottom` on `.section` and `.job` first (minimum 4px), then reduce `line-height` (minimum 1.25), then reduce `font-size` (minimum 9.5pt) — in that order. PDF margins stay at `0.45in` always.
 2. **Section spacing** — `.section { margin-bottom: 8px }` must always be present. There must be visible space between Education, Summary, Experience, Projects, Skills.
 3. **Company entry spacing** — `.job { margin-bottom: 8px }` must always be present. There must be visible space between different company entries within Experience.
 4. **PDF margins** — always `0.45in` all sides in `generate-pdf.mjs`. Do not increase margins to fix overflow — fix the content/font instead.
