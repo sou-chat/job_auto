@@ -202,11 +202,11 @@ async function collectJobs(page, searchPath, maxPages) {
     const jdPath = job.jdURL || '';
     if (!jdPath || !job.title) continue;
     const url = NAUKRI_BASE + (jdPath.startsWith('/') ? '' : '/') + jdPath;
-    const locPH = (job.placeholders || []).find(p => p.label?.toLowerCase().includes('loc'));
+    const locPH = (job.placeholders || []).find(p => p.type === 'location');
     jobs.push({
       title:    job.title.trim(),
       company:  (job.companyName || '').trim(),
-      location: (locPH?.title || '').trim(),
+      location: (locPH?.label || '').trim(),
       url,
     });
   }
