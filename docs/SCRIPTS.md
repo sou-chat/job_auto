@@ -17,7 +17,9 @@ All scripts live in the project root as `.mjs` modules and are exposed via `npm 
 | `npm run update` | `update-system.mjs apply` | Apply upstream update |
 | `npm run rollback` | `update-system.mjs rollback` | Rollback last update |
 | `npm run liveness` | `check-liveness.mjs` | Test if job URLs are still active |
-| `npm run scan` | `scan.mjs` | Zero-token portal scanner |
+| `npm run scan` | `scan.mjs` | Zero-token portal scanner (Greenhouse/Ashby/Lever + WebSearch) |
+| `npm run scan:apify` | `scan-apify.mjs` | Apify scraper — LinkedIn + Indeed India. Requires `APIFY_TOKEN` |
+| `npm run scan:naukri` | `scan-naukri.mjs` | Playwright headless login scraper for Naukri. Requires `NAUKRI_EMAIL` + `NAUKRI_PASSWORD` |
 
 ---
 
@@ -184,6 +186,45 @@ Zero-token portal scanner. Hits ATS APIs (Greenhouse, Ashby, Lever) and career p
 
 ```bash
 npm run scan
+npm run scan -- --dry-run          # preview without writing
+npm run scan -- --company Razorpay  # single company
 ```
 
 **Exit codes:** `0` scan completed, `1` configuration error or no portals.yml found.
+
+---
+
+## scan:apify
+
+Apify-powered scraper for **LinkedIn** and **Indeed India**. Starts Apify actor runs, polls for completion, fetches the result dataset, applies `title_filter` + `location_filter` from `portals.yml`, deduplicates, and appends new jobs to `data/pipeline.md`.
+
+**Requires:** `APIFY_TOKEN` in `.env`. Free tier gives ~$5/month credits — enough for 10+ scans.
+
+```bash
+npm run scan:apify
+npm run scan:apify -- --dry-run           # preview without writing
+npm run scan:apify -- --source linkedin   # single source
+npm run scan:apify -- --debug             # print first raw item per source
+```
+
+Actor config lives in `portals.yml` under `apify_sources`. To change search URLs or limits, edit that section.
+
+**Exit codes:** `0` scan completed, `1` missing token or config error.
+
+---
+
+## scan:naukri
+
+Playwright headless browser scraper for **Naukri**. Logs in with your Naukri credentials, navigates search pages, and intercepts Naukri's own internal API responses — giving clean structured JSON without any HTML parsing.
+
+**Requires:** `NAUKRI_EMAIL` + `NAUKRI_PASSWORD` in `.env`. Naukri blocks all direct API and plain HTTP access; a real authenticated browser session is the only reliable method.
+
+```bash
+npm run scan:naukri
+npm run scan:naukri -- --dry-run    # preview without writing
+npm run scan:naukri -- --headed     # show browser window (useful for debugging login)
+```
+
+Search terms are hardcoded in `scan-naukri.mjs` under the `SEARCHES` array. Edit that array to add or change search keywords.
+
+**Exit codes:** `0` scan completed, `1` missing credentials or login failure.

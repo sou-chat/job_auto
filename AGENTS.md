@@ -65,6 +65,8 @@ AI-powered, CLI-agnostic job search automation: pipeline tracking, offer evaluat
 | `followup-cadence.mjs` | Follow-up cadence calculator (JSON output) |
 | `data/follow-ups.md` | Follow-up history tracker |
 | `scan.mjs` | Zero-token portal scanner — hits Greenhouse/Ashby/Lever APIs directly, zero LLM cost |
+| `scan-apify.mjs` | Apify-powered scraper for LinkedIn + Indeed India. Requires `APIFY_TOKEN` in `.env`. Config in `portals.yml` under `apify_sources`. Run: `node scan-apify.mjs` |
+| `scan-naukri.mjs` | Playwright headless browser scraper for Naukri. Logs in with `NAUKRI_EMAIL`+`NAUKRI_PASSWORD` from `.env`, intercepts Naukri's internal API responses. Run: `node scan-naukri.mjs` |
 | `check-liveness.mjs` | Job posting liveness checker |
 | `liveness-core.mjs` | Shared liveness logic (expired signals win over generic Apply text) |
 | `reports/` | Evaluation reports (format: `{###}-{company-slug}-{YYYY-MM-DD}.md`). Blocks A-F + G (Posting Legitimacy). Header includes `**Legitimacy:** {tier}`. |

@@ -29,6 +29,7 @@ modes/_profile.md
 
 # Secrets (never commit — use .env.example as template)
 .env
+data/naukri-session.json
 
 # Generated
 .resolved-prompt-*

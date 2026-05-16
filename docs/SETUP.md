@@ -6,6 +6,23 @@
 - Node.js 18+ (for PDF generation and utility scripts)
 - (Optional) Go 1.21+ (for the dashboard TUI)
 
+## Environment Variables
+
+Copy `.env.example` to `.env` and fill in the values you need:
+
+```bash
+cp .env.example .env
+```
+
+| Variable | Required for | Where to get it |
+|----------|-------------|-----------------|
+| `GEMINI_API_KEY` | `gemini-eval.mjs` (AI evaluation) | [aistudio.google.com/apikey](https://aistudio.google.com/apikey) — free |
+| `APIFY_TOKEN` | `scan-apify.mjs` (LinkedIn + Indeed) | [console.apify.com](https://console.apify.com) → Account → Integrations — free tier |
+| `NAUKRI_EMAIL` | `scan-naukri.mjs` (Naukri scraping) | Your Naukri login email |
+| `NAUKRI_PASSWORD` | `scan-naukri.mjs` (Naukri scraping) | Your Naukri login password |
+
+> **Security:** Never commit `.env` to git. It is already in `.gitignore`.
+
 ## Quick Start (5 steps)
 
 ### 1. Clone and install
