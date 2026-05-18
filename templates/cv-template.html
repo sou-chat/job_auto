@@ -1,51 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{LANG}}">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{NAME}} — CV</title>
+<title>Sourish Chatterjee — CV</title>
 <style>
-  @font-face {
-    font-family: 'Space Grotesk';
-    src: url('./fonts/space-grotesk-latin.woff2') format('woff2');
-    font-weight: 300 700;
-    font-style: normal;
-    font-display: swap;
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-  }
-
-  @font-face {
-    font-family: 'Space Grotesk';
-    src: url('./fonts/space-grotesk-latin-ext.woff2') format('woff2');
-    font-weight: 300 700;
-    font-style: normal;
-    font-display: swap;
-    unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-  }
-
-  @font-face {
-    font-family: 'DM Sans';
-    src: url('./fonts/dm-sans-latin.woff2') format('woff2');
-    font-weight: 100 1000;
-    font-style: normal;
-    font-display: swap;
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-  }
-
-  @font-face {
-    font-family: 'DM Sans';
-    src: url('./fonts/dm-sans-latin-ext.woff2') format('woff2');
-    font-weight: 100 1000;
-    font-style: normal;
-    font-display: swap;
-    unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-  }
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
   html {
     -webkit-print-color-adjust: exact;
@@ -53,369 +12,240 @@
   }
 
   body {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    line-height: 1.5;
-    color: #1a1a2e;
-    background: #ffffff;
-    padding: 0;
-    margin: 0;
+    font-family: 'Calibri', 'Gill Sans MT', 'Segoe UI', Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.4;
+    color: #000;
+    background: #fff;
   }
 
-  .page {
-    width: 100%;
-    max-width: {{PAGE_WIDTH}};
-    margin: 0 auto;
-    padding: 2px 0;
-  }
-
-  /* === HEADER === */
+  /* ── HEADER ── */
   .header {
-    margin-bottom: 20px;
+    text-align: center;
+    margin-bottom: 8px;
   }
 
   .header h1 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: #1a1a2e;
-    letter-spacing: -0.02em;
-    margin-bottom: 6px;
-    line-height: 1.1;
-  }
-
-  .header-gradient {
-    height: 2px;
-    background: linear-gradient(to right, hsl(187, 74%, 32%), hsl(270, 70%, 45%));
-    border-radius: 1px;
-    margin-bottom: 10px;
-  }
-
-  .contact-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 14px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 10.5px;
-    line-height: 1.4;
-    color: #555;
-  }
-
-  .contact-row a {
-    color: #555;
-    text-decoration: none;
-  }
-
-  .contact-row .separator {
-    color: #ccc;
-  }
-
-  /* === SECTIONS === */
-  .section {
-    margin-bottom: 18px;
-  }
-
-  .section-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: hsl(187, 74%, 32%);
-    border-bottom: 1.5px solid #e2e2e2;
-    padding-bottom: 4px;
-    margin-bottom: 10px;
-    line-height: 1.2;
-  }
-
-  /* === PROFESSIONAL SUMMARY === */
-  .summary-text {
-    font-size: 11px;
-    line-height: 1.7;
-    color: #2f2f2f;
-  }
-
-  /* Links must never break across lines */
-  a {
-    white-space: nowrap;
-  }
-
-  /* === CORE COMPETENCIES === */
-  .competencies-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .competency-tag {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 10px;
-    font-weight: 500;
-    color: hsl(187, 74%, 28%);
-    background: hsl(187, 40%, 95%);
-    padding: 4px 10px;
-    border-radius: 3px;
-    border: 1px solid hsl(187, 40%, 88%);
-  }
-
-  /* === WORK EXPERIENCE === */
-  .job {
-    margin-bottom: 14px;
-  }
-
-  .job-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 12px;
+    font-size: 18pt;
+    font-weight: bold;
+    letter-spacing: 0.02em;
     margin-bottom: 4px;
   }
 
-  .job-company {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 12.5px;
-    font-weight: 600;
-    color: hsl(270, 70%, 45%);
+  .contact {
+    font-size: 9.5pt;
+    color: #000;
+    line-height: 1.5;
   }
 
-  .job-period {
-    font-size: 10.5px;
-    color: #777;
-    white-space: nowrap;
+  .contact a {
+    color: #1155cc;
+    text-decoration: none;
   }
 
-  .job-role {
-    font-size: 11px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 6px;
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 8px;
   }
 
-  .job-location {
-    font-size: 10px;
-    color: #888;
+  .section-title {
+    font-size: 10.5pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 1px solid #000;
+    padding-bottom: 1px;
+    margin-bottom: 5px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── EDUCATION ── */
+  .edu-item {
+    margin-bottom: 4px;
+    font-size: 10.5pt;
+    line-height: 1.4;
+  }
+
+  .edu-item .inst { font-weight: bold; }
+
+  .edu-item .dates {
+    font-style: italic;
+    display: block;
+  }
+
+  /* ── SUMMARY ── */
+  .summary-text {
+    font-size: 10.5pt;
+    line-height: 1.45;
+    text-align: justify;
+  }
+
+  /* ── EXPERIENCE ── */
+  .job {
+    margin-bottom: 7px;
+  }
+
+  .job-header {
+    font-size: 10.5pt;
+    line-height: 1.3;
+  }
+
+  .job-company { font-weight: bold; }
+
+  .job-role { font-style: italic; }
+
+  .job-dates {
+    font-style: italic;
+    display: block;
+    margin-bottom: 2px;
+    font-size: 10.5pt;
   }
 
   .job ul {
     padding-left: 18px;
-    margin-top: 6px;
+    margin-top: 1px;
   }
 
   .job li {
-    font-size: 10.5px;
-    line-height: 1.6;
-    color: #333;
-    margin-bottom: 4px;
+    font-size: 10.5pt;
+    line-height: 1.4;
+    margin-bottom: 2px;
   }
 
-  .job li strong {
-    font-weight: 600;
+  .job li strong { font-weight: bold; }
+
+  /* ── PROJECTS ── */
+  .project-list {
+    padding-left: 18px;
   }
 
-  /* === PROJECTS === */
-  .project {
-    margin-bottom: 12px;
+  .project-list li {
+    font-size: 10.5pt;
+    line-height: 1.4;
+    margin-bottom: 3px;
   }
 
-  .project-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 11.5px;
-    font-weight: 600;
-    color: hsl(270, 70%, 45%);
+  /* ── SKILLS ── */
+  .skill-list {
+    padding-left: 18px;
   }
 
-  .project-badge {
-    font-size: 9px;
-    font-weight: 500;
-    color: hsl(187, 74%, 32%);
-    background: hsl(187, 40%, 95%);
-    padding: 1px 6px;
-    border-radius: 2px;
-    margin-left: 6px;
+  .skill-list li {
+    font-size: 10.5pt;
+    line-height: 1.4;
+    margin-bottom: 2px;
   }
 
-  .project-desc {
-    font-size: 10.5px;
-    color: #444;
-    margin-top: 3px;
-    line-height: 1.55;
-  }
-
-  .project-tech {
-    font-size: 9.5px;
-    color: #888;
-    margin-top: 3px;
-  }
-
-  /* === EDUCATION === */
-  .edu-item {
-    margin-bottom: 8px;
-  }
-
-  .edu-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 12px;
-  }
-
-  .edu-title {
-    font-weight: 600;
-    font-size: 11px;
-    color: #333;
-  }
-
-  .edu-org {
-    color: hsl(270, 70%, 45%);
-    font-weight: 500;
-  }
-
-  .edu-year {
-    font-size: 10px;
-    color: #777;
-    white-space: nowrap;
-  }
-
-  .edu-desc {
-    font-size: 10px;
-    color: #666;
-    margin-top: 2px;
-    line-height: 1.5;
-  }
-
-  /* === CERTIFICATIONS === */
-  .cert-item {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(90px, max-content) 44px;
-    align-items: baseline;
-    gap: 12px;
-    margin-bottom: 6px;
-  }
-
-  .cert-title {
-    font-size: 10.5px;
-    font-weight: 500;
-    color: #333;
-    min-width: 0;
-  }
-
-  .cert-org {
-    color: hsl(270, 70%, 45%);
-    white-space: nowrap;
-  }
-
-  .cert-year {
-    font-size: 10px;
-    color: #777;
-    white-space: nowrap;
-    text-align: right;
-  }
-
-  /* === SKILLS === */
-  .skills-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 14px;
-  }
-
-  .skill-item {
-    font-size: 10.5px;
-    color: #444;
-  }
-
-  .skill-category {
-    font-weight: 600;
-    color: #333;
-    font-size: 10.5px;
-  }
-
-  /* === PRINT === */
+  /* ── PRINT / ONE-PAGE LOCK ── */
   @media print {
     body {
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }
-
-    .page {
-      padding: 0;
-    }
   }
 
-  /* === PAGE BREAK CONTROL === */
-  .avoid-break,
-  .job,
-  .project,
-  .edu-item,
-  .cert-item {
+  .job, .edu-item {
     break-inside: avoid;
     page-break-inside: avoid;
   }
 </style>
 </head>
 <body>
-<div class="page">
 
-  <!-- HEADER -->
-  <div class="header avoid-break">
-    <h1>{{NAME}}</h1>
-    <div class="header-gradient"></div>
-    <div class="contact-row">
-      <span>{{PHONE}}</span>
-      <span class="separator">|</span>
-      <span>{{EMAIL}}</span>
-      <span class="separator">|</span>
-      <a href="{{LINKEDIN_URL}}">{{LINKEDIN_DISPLAY}}</a>
-      <span class="separator">|</span>
-      <a href="{{PORTFOLIO_URL}}">{{PORTFOLIO_DISPLAY}}</a>
-      <span class="separator">|</span>
-      <span>{{LOCATION}}</span>
-    </div>
+<!-- HEADER (static) -->
+<div class="header">
+  <h1>Sourish Chatterjee</h1>
+  <div class="contact">
+    Email: sourishthirteen@gmail.com &nbsp;|&nbsp; Phone: 9709373097 &nbsp;|&nbsp;
+    LinkedIn: <a href="https://linkedin.com/in/sourish-prodman">linkedin.com/in/sourish-prodman</a> &nbsp;|&nbsp;
+    <a href="https://www.notion.so/Sourish-Chatterjee-1e1472664d9f80bc9773f75403282f2c">Product Portfolio Link</a>
   </div>
-
-  <!-- PROFESSIONAL SUMMARY -->
-  <div class="section avoid-break">
-    <div class="section-title">{{SECTION_SUMMARY}}</div>
-    <div class="summary-text">{{SUMMARY_TEXT}}</div>
-  </div>
-
-  <!-- CORE COMPETENCIES -->
-  <div class="section">
-    <div class="section-title">{{SECTION_COMPETENCIES}}</div>
-    <div class="competencies-grid">
-      {{COMPETENCIES}}
-    </div>
-  </div>
-
-  <!-- WORK EXPERIENCE -->
-  <div class="section">
-    <div class="section-title">{{SECTION_EXPERIENCE}}</div>
-    {{EXPERIENCE}}
-  </div>
-
-  <!-- PROJECTS -->
-  <div class="section avoid-break">
-    <div class="section-title">{{SECTION_PROJECTS}}</div>
-    {{PROJECTS}}
-  </div>
-
-  <!-- EDUCATION -->
-  <div class="section avoid-break">
-    <div class="section-title">{{SECTION_EDUCATION}}</div>
-    {{EDUCATION}}
-  </div>
-
-  <!-- CERTIFICATIONS -->
-  <div class="section avoid-break">
-    <div class="section-title">{{SECTION_CERTIFICATIONS}}</div>
-    {{CERTIFICATIONS}}
-  </div>
-
-  <!-- SKILLS -->
-  <div class="section avoid-break">
-    <div class="section-title">{{SECTION_SKILLS}}</div>
-    {{SKILLS}}
-  </div>
-
 </div>
+
+<!-- EDUCATION (static - never changes) -->
+<div class="section">
+  <div class="section-title">Education</div>
+
+  <div class="edu-item">
+    <span class="inst">Indian Institute of Technology, Dhanbad,</span> B.Tech in Electronics and Communication Engineering; OGPA: 8.78, Top 3 in Department
+    <span class="dates">2016-2020, Jharkhand, India</span>
+  </div>
+
+  <div class="edu-item">
+    <span class="inst">Emmanuel Mission School,</span> 12th CBSE board, Percentage: 91.6%
+    <span class="dates">2014-2016, Kota, India</span>
+  </div>
+</div>
+
+<!-- PROFESSIONAL SUMMARY — dynamic: tailor per job. Replace text inside .summary-text only. -->
+<div class="section">
+  <div class="section-title">Professional Summary</div>
+  <div class="summary-text">Product Manager with 4+ years' experience across Product &amp; Automation, specializing in <strong>product lifecycle management, roadmap execution, and data-driven decision-making</strong>. Scaled B2B/B2C digital products, improving retention by 35%, reducing operational incidents by 80%, and driving multi-channel revenue growth. Seeking <strong>PM/AI PM roles</strong> to deliver user-centric, scalable products.</div>
+</div>
+
+<!-- EXPERIENCE — dynamic: tailor bullet emphasis per job. Replace .job blocks only; keep structure. -->
+<div class="section">
+  <div class="section-title">Experience</div>
+
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">Delostyle Studio (Early-stage startup for health tech and e-commerce),</span>
+      <span class="job-role"> Technical Product Manager</span>
+    </div>
+    <span class="job-dates">Feb 2026-Present, India</span>
+    <ul>
+      <li>Developed a 0&#8594;1 AI-powered multilingual clinical dictation-to-documentation platform with automated medical templating by leading cross-functional collaboration across clinicians, engineering, product, and business teams, <strong>reducing clinician documentation effort by 60%</strong></li>
+      <li>Partnered with enterprise stakeholders, leadership, marketing, and client teams to align AI-driven clinical and compliance workflows with business goals, securing the <strong>first B2B deal worth ~$92K</strong></li>
+      <li>Introduced <strong>AI-driven product and development workflows using Claude and Figma Make</strong> to streamline requirement generation, high-fidelity prototyping, documentation, and sprint execution, <strong>reducing feature delivery timelines by 40%</strong> while scaling the product team from 1 to 5 members</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">Bharti Airtel,</span>
+      <span class="job-role"> Senior Manager (Product Manager)</span>
+    </div>
+    <span class="job-dates">Dec 2023-Feb 2026, India</span>
+    <ul>
+      <li>Directed end-to-end development of an <strong>AI-powered compliance detection system</strong> for an operations management tool, achieving <strong>80% reduction in field accidents</strong> and <strong>60% increase in compliance rates</strong> &#8212; defining product health metrics and KPIs throughout</li>
+      <li>Introduced <strong>GenAI pipelines for sentiment analysis and campaign performance automation</strong> through conversational UX, improving <strong>retention by 35%</strong> and reducing churn by 1.2% QoQ</li>
+      <li>Spearheaded <strong>digital product strategy across B2B &amp; B2C</strong>, conducting <strong>user research and usability studies</strong> to define KPIs and delivering 5+ high-impact features that boosted user retention by 35%</li>
+      <li>Orchestrated an <strong>intelligent operations management system</strong> automating task assignment, real-time monitoring &amp; performance tracking for 1K+ field employees, driving <strong>35% improvement in operational efficiency</strong></li>
+      <li>Collaborated with engineering, operations &amp; client stakeholders to launch an <strong>automated ticketing solution</strong>, boosting product MRR by 8% through <strong>user-centric design enhancements &amp; A/B testing</strong></li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">Ericsson India Private Limited,</span>
+      <span class="job-role"> Cluster Experience Manager (Automation)</span>
+    </div>
+    <span class="job-dates">August 2020-Nov 2023, India</span>
+    <ul>
+      <li>Engineered 15+ automation workflows to reduce manual effort by 30 hours weekly &amp; deliver <strong>8L+ annual cost savings</strong> and <strong>90% process efficiency</strong></li>
+      <li>Developed analytics dashboards monitoring <strong>7+ key operational metrics</strong> (churn, utilization, SLA adherence, etc.), enabling data-driven decision-making across 4+ national teams</li>
+    </ul>
+  </div>
+</div>
+
+<!-- PROJECTS (static - never changes) -->
+<div class="section">
+  <div class="section-title">Projects</div>
+  <ul class="project-list">
+    <li><strong>Cloud Kitchen Brand:</strong> Founded cloud kitchen with &#8377;10K seed, scaling to &#8377;2L+ monthly revenue and 40% profit margin in 6 months; achieved 25% YoY growth via SOPs &amp; pricing strategy</li>
+    <li><strong>Neo-banking Habitability Formation:</strong> Led 20+ user interviews to identify financial behavioral frictions and design <strong>AI prototype</strong> improving financial habits, habit formation and financial awareness for 3.5M+ Fi Money users</li>
+  </ul>
+</div>
+
+<!-- SKILLS — dynamic: reorder/filter categories per job. Replace .skill-list contents only. -->
+<div class="section">
+  <div class="section-title">Skills</div>
+  <ul class="skill-list">
+    <li><strong>Product Skills:</strong> Agile, Product Vision, Market Research, Data-driven Decision making, Risk Management, Roadmapping</li>
+    <li><strong>Technical:</strong> Claude, SQL, Python3.0, MS Office, Figma Make, JIRA, Confluence, Mixpanel</li>
+    <li><strong>Interpersonal:</strong> Prioritization, Cross-functional coordination, Conflict Resolution</li>
+    <li><strong>Certifications:</strong> Product Manager Fellowship by Product Space</li>
+  </ul>
+</div>
+
 </body>
 </html>
